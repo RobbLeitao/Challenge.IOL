@@ -12,9 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CodingChallenge.Data.Classes
+namespace CodingChallenge.Data
 {
-    public class FormaGeometrica
+    public class Reporte
     {
         #region Formas
 
@@ -36,13 +36,13 @@ namespace CodingChallenge.Data.Classes
 
         public int Tipo { get; set; }
 
-        public FormaGeometrica(int tipo, decimal ancho)
+        public Reporte(int tipo, decimal ancho)
         {
             Tipo = tipo;
             _lado = ancho;
         }
 
-        public static string Imprimir(List<FormaGeometrica> formas, int idioma)
+        public static string Imprimir(List<Reporte> formas, int idioma)
         {
             var sb = new StringBuilder();
 
