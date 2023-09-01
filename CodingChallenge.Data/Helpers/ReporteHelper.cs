@@ -36,7 +36,7 @@ namespace CodingChallenge.Data.Helpers
             return string.Empty;
         }
 
-        public decimal CalcularArea(Formas Tipo, decimal lado)
+        public static decimal CalcularArea(Formas Tipo, decimal lado)
         {
             switch (Tipo)
             {
@@ -51,7 +51,7 @@ namespace CodingChallenge.Data.Helpers
             }
         }
 
-        public decimal CalcularPerimetro(Formas Tipo, decimal lado)
+        public static decimal CalcularPerimetro(Formas Tipo, decimal lado)
         {
             switch (Tipo)
             {
@@ -63,6 +63,19 @@ namespace CodingChallenge.Data.Helpers
                     return lado * 3;
                 default:
                     throw new ArgumentOutOfRangeException(@"Forma desconocida");
+            }
+        }
+
+        public static bool ValidarIdioma (int idioma)
+        {
+            switch (idioma)
+            {
+                case (int)Idiomas.Castellano:
+                    return true;
+                case (int)Idiomas.Ingles:
+                    return true;
+                default:
+                    return false;
             }
         }
     }
