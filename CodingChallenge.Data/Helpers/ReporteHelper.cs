@@ -7,6 +7,8 @@ namespace CodingChallenge.Data.Helpers
     {
         public const string EMPTY = "EMPTY";
         public const string HEADER = "HEADER";
+        public const string TOTAL1 = "TOTAL1";
+        public const string TOTAL2 = "TOTAL2";
 
         public static string ObtenerLinea(int cantidad, decimal area, decimal perimetro, Formas tipo, Idiomas idioma)
         {
@@ -53,11 +55,11 @@ namespace CodingChallenge.Data.Helpers
                         return cantidad == 1 ? "Triangolo" : "Triangoli"; // Italiano
                 case Formas.Pentagono:
                     if (Idiomas.Castellano.Equals(idioma))
-                        return cantidad == 1 ? "Rectangulo" : "Rectangulos";
+                        return cantidad == 1 ? "Pentagono" : "Pentagonos";
                     else if (Idiomas.Ingles.Equals(idioma))
-                        return cantidad == 1 ? "Rectangle" : "Rectangles";
+                        return cantidad == 1 ? "Pentagon" : "Pentagons";
                     else
-                        return cantidad == 1 ? "Rettangolo" : "Rettangoli"; // Italiano    
+                        return cantidad == 1 ? "Pentagono" : "Pentagoni"; // Italiano    
             }
 
             return string.Empty;
@@ -124,6 +126,14 @@ namespace CodingChallenge.Data.Helpers
                     return idioma.Equals(Idiomas.Castellano) ? "<h1>Reporte de Formas</h1>"
                         : idioma.Equals(Idiomas.Ingles) ? "<h1>Shapes report</h1>"
                         : "<h1>Rapporto sui moduli</h1>"; // Italiano
+                case TOTAL1:
+                    return idioma.Equals(Idiomas.Castellano) ? "formas"
+                        : idioma.Equals(Idiomas.Ingles) ? "shapes"
+                        : "forme"; // Italiano
+                case TOTAL2:
+                    return idioma.Equals(Idiomas.Castellano) ? "Perimetro"
+                        : idioma.Equals(Idiomas.Ingles) ? "Perimeter"
+                        : "Perimetro"; // Italiano
                 default:
                     return string.Empty;
             }

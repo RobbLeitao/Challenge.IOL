@@ -85,12 +85,13 @@ namespace CodingChallenge.Data
                 sb.Append(ReporteHelper.ObtenerLinea(numeroCuadrados, areaCuadrados, perimetroCuadrados, Formas.Cuadrado, idioma));
                 sb.Append(ReporteHelper.ObtenerLinea(numeroCirculos, areaCirculos, perimetroCirculos, Formas.Circulo, idioma));
                 sb.Append(ReporteHelper.ObtenerLinea(numeroTriangulos, areaTriangulos, perimetroTriangulos, Formas.TrianguloEquilatero, idioma));
+                sb.Append(ReporteHelper.ObtenerLinea(numeroPentagonos, areaPentagonos, perimetroPentagonos, Formas.Pentagono, idioma));
 
                 // FOOTER
                 sb.Append("TOTAL:<br/>");
-                sb.Append(numeroCuadrados + numeroCirculos + numeroTriangulos + " " + (idioma == Idiomas.Castellano ? "formas" : "shapes") + " ");
-                sb.Append((Idiomas.Castellano.Equals(idioma) ? "Perimetro " : "Perimeter ") + (perimetroCuadrados + perimetroTriangulos + perimetroCirculos).ToString("#.##") + " ");
-                sb.Append("Area " + (areaCuadrados + areaCirculos + areaTriangulos).ToString("#.##"));
+                sb.Append(numeroCuadrados + numeroCirculos + numeroTriangulos + numeroPentagonos + " " + ReporteHelper.TraducirIdioma(ReporteHelper.TOTAL1, idioma) + " ");
+                sb.Append(ReporteHelper.TraducirIdioma(ReporteHelper.TOTAL2, idioma) + " " + (perimetroCuadrados + perimetroTriangulos + perimetroCirculos + perimetroPentagonos).ToString("#.##") + " ");
+                sb.Append("Area " + (areaCuadrados + areaCirculos + areaTriangulos + areaPentagonos).ToString("#.##"));
             }
 
             return sb.ToString();

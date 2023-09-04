@@ -52,7 +52,6 @@ namespace CodingChallenge.Data.Test
         public void TestResumenListaConUnCuadrado()
         {
             var cuadrados = new List<FormaGeometrica> { new FormaGeometrica(1, 5) };
-
             var resumen = Reporte.Imprimir(cuadrados, 1);
 
             Assert.AreEqual("<h1>Reporte de Formas</h1>1 Cuadrado | Area 25 | Perimetro 20 <br/>TOTAL:<br/>1 formas Perimetro 20 Area 25", resumen);
@@ -113,6 +112,56 @@ namespace CodingChallenge.Data.Test
             Assert.AreEqual(
                 "<h1>Reporte de Formas</h1>2 Cuadrados | Area 29 | Perimetro 28 <br/>2 Círculos | Area 13,01 | Perimetro 18,06 <br/>3 Triángulos | Area 49,64 | Perimetro 49,64 <br/>TOTAL:<br/>7 formas Perimetro 95,7 Area 91,65",
                 resumen);
+        }
+
+        [TestMethod]
+        public void TestResumenListaConUnPentagonoEnCastellano()
+        {
+            var pentagono = new List<FormaGeometrica> { new FormaGeometrica(5, 5) };
+            var resumen = Reporte.Imprimir(pentagono, 1);
+
+            Assert.AreEqual("<h1>Reporte de Formas</h1>1 Pentagono | Area 98,17 | Perimetro 98,17 <br/>TOTAL:<br/>1 formas Perimetro 98,17 Area 98,17", resumen);
+        }
+
+        [TestMethod]
+        public void TestResumenListaConUnPentagonoEnItaliano()
+        {
+            var pentagono = new List<FormaGeometrica> { new FormaGeometrica(5, 5) };
+            var resumen = Reporte.Imprimir(pentagono, 3);
+
+            Assert.AreEqual("<h1>Rapporto sui moduli</h1>1 Pentagono | La zona 98,17 | Perimetro 98,17 <br/>TOTAL:<br/>1 forme Perimetro 98,17 Area 98,17", resumen);
+        }
+
+        [TestMethod]
+        public void TestResumenListaConMasTiposEnItaliano()
+        {
+            var formas = new List<FormaGeometrica>
+            {
+                new FormaGeometrica(1, 5),
+                new FormaGeometrica(3, 3),
+                new FormaGeometrica(2, 4),
+                new FormaGeometrica(1, 2),
+                new FormaGeometrica(2, 9),
+                new FormaGeometrica(3, 2.75m),
+                new FormaGeometrica(2, 4.2m),
+                new FormaGeometrica(5, 4),
+                new FormaGeometrica(5, 5)
+            };
+
+            var resumen = Reporte.Imprimir(formas, 3);
+
+            Assert.AreEqual(
+                "<h1>Rapporto sui moduli</h1>2 Piazze | La zona 29 | Perimetro 28 <br/>2 Cerchi | La zona 13,01 | Perimetro 18,06 <br/>3 Triangoli | La zona 49,64 | Perimetro 49,64 <br/>2 Pentagoni | La zona 161,01 | Perimetro 161,01 <br/>TOTAL:<br/>9 forme Perimetro 256,71 Area 252,66",
+                resumen);
+        }
+
+        [TestMethod]
+        public void TestResumenListaConUnTrianguloEnIngles()
+        {
+            var triangulo = new List<FormaGeometrica> { new FormaGeometrica(2, 5) };
+            var resumen = Reporte.Imprimir(triangulo, 2);
+
+            Assert.AreEqual("<h1>Shapes report</h1>1 Triangle | Area 10,83 | Perimeter 10,83 <br/>TOTAL:<br/>1 shapes Perimeter 10,83 Area 10,83", resumen);
         }
     }
 }
