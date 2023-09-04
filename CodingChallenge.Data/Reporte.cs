@@ -27,38 +27,32 @@ namespace CodingChallenge.Data
             if (ReporteHelper.ValidarIdioma(lng))
                 idioma = (Idiomas)lng;
             else
-                throw new ArgumentOutOfRangeException(@"Idioma desconocido");
+                throw new InvalidOperationException("Idioma desconocido.");
 
             if (!formas.Any())
-            {
-                if (Idiomas.Castellano.Equals(idioma))
-                    sb.Append("<h1>Lista vacía de formas!</h1>");
-                else
-                    sb.Append("<h1>Empty list of shapes!</h1>");
-            }
+                sb.Append(ReporteHelper.TraducirIdioma(ReporteHelper.EMPTY, idioma));
             else
             {
                 // Hay por lo menos una forma
                 // HEADER
-                if (Idiomas.Castellano.Equals(idioma))
-                    sb.Append("<h1>Reporte de Formas</h1>");
-                else
-                    // default es inglés
-                    sb.Append("<h1>Shapes report</h1>");
+                sb.Append(ReporteHelper.TraducirIdioma(ReporteHelper.HEADER, idioma));
 
                 var numeroCuadrados = 0;
                 var numeroCirculos = 0;
                 var numeroTriangulos = 0;
+                var numeroPentagonos = 0;
 
                 var areaCuadrados = 0m;
                 var areaCirculos = 0m;
                 var areaTriangulos = 0m;
+                var areaPentagonos = 0m;
 
                 var perimetroCuadrados = 0m;
                 var perimetroCirculos = 0m;
                 var perimetroTriangulos = 0m;
+                var perimetroPentagonos = 0m;
 
-                foreach(var item in formas)
+                foreach (var item in formas)
                 {
                     if (item.Tipo == (int)Formas.Cuadrado)
                     {
@@ -66,18 +60,26 @@ namespace CodingChallenge.Data
                         areaCuadrados += ReporteHelper.CalcularArea((Formas)item.Tipo, item.Ancho);
                         perimetroCuadrados += ReporteHelper.CalcularPerimetro((Formas)item.Tipo, item.Ancho);
                     }
-                    if (item.Tipo == (int)Formas.Circulo)
+                    else if (item.Tipo == (int)Formas.Circulo)
                     {
                         numeroCirculos++;
                         areaCirculos += ReporteHelper.CalcularArea((Formas)item.Tipo, item.Ancho);
                         perimetroCirculos += ReporteHelper.CalcularPerimetro((Formas)item.Tipo, item.Ancho);
                     }
-                    if (item.Tipo == (int)Formas.TrianguloEquilatero)
+                    else if (item.Tipo == (int)Formas.TrianguloEquilatero)
                     {
                         numeroTriangulos++;
                         areaTriangulos += ReporteHelper.CalcularArea((Formas)item.Tipo, item.Ancho);
                         perimetroTriangulos += ReporteHelper.CalcularArea((Formas)item.Tipo, item.Ancho);
                     }
+                    else if (item.Tipo == (int)Formas.Pentagono)
+                    {
+                        numeroPentagonos++;
+                        areaPentagonos += ReporteHelper.CalcularArea((Formas)item.Tipo, item.Ancho);
+                        perimetroPentagonos += ReporteHelper.CalcularArea((Formas)item.Tipo, item.Ancho);
+                    }
+                    else
+                        throw new InvalidOperationException("Forma desconocida.");
                 }
                 
                 sb.Append(ReporteHelper.ObtenerLinea(numeroCuadrados, areaCuadrados, perimetroCuadrados, Formas.Cuadrado, idioma));

@@ -24,6 +24,31 @@ namespace CodingChallenge.Data.Test
         }
 
         [TestMethod]
+        public void TestResumenListaVaciaFormasEnItaliano()
+        {
+            Assert.AreEqual("<h1>Elenco vuoto di forme!</h1>",
+                Reporte.Imprimir(new List<FormaGeometrica>(), 3));
+        }
+
+        [TestMethod]
+        public void TestResumenListaCuadradoIdiomaDesconocidoException()
+        {
+            var cuadrados = new List<FormaGeometrica> { new FormaGeometrica(1, 5) };
+            var ex = Assert.ThrowsException<InvalidOperationException>(() => Reporte.Imprimir(cuadrados, 7));
+
+            Assert.AreEqual("Idioma desconocido.", ex.Message);
+        }
+
+        [TestMethod]
+        public void TestResumenListaFormaDesconocidaEnItalianoException()
+        {
+            var forma = new List<FormaGeometrica> { new FormaGeometrica(7, 5) };
+            var ex = Assert.ThrowsException<InvalidOperationException>(() => Reporte.Imprimir(forma, 3));
+
+            Assert.AreEqual("Forma desconocida.", ex.Message);
+        }
+
+        [TestMethod]
         public void TestResumenListaConUnCuadrado()
         {
             var cuadrados = new List<FormaGeometrica> { new FormaGeometrica(1, 5) };

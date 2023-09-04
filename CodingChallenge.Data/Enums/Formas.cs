@@ -6,5 +6,6 @@
         TrianguloEquilatero = 2,
         Circulo = 3,
         Trapecio = 4,
+        Pentagono = 5
     }
 }
